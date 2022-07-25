@@ -1,15 +1,19 @@
-package com.purnendu.comprehensivebootcampofcompose
+package com.purnendu.comprehensivebootcampofcompose.noteApp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.purnendu.comprehensivebootcampofcompose.noteApp.data.NoteDataSource
+import com.purnendu.comprehensivebootcampofcompose.noteApp.screen.NoteScreen
+import com.purnendu.comprehensivebootcampofcompose.noteApp.screen.NoteViewModel
+
 import com.purnendu.comprehensivebootcampofcompose.ui.theme.ComprehensiveBootcampOfComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +26,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    val noteViewModel: NoteViewModel by viewModels()
+                    NotesApp(noteViewModel)
                 }
             }
         }
@@ -30,14 +35,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+fun NotesApp(noteViewModel: NoteViewModel = viewModel()) {
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ComprehensiveBootcampOfComposeTheme {
-        Greeting("Android")
-    }
+    val notesList = noteViewModel.getAllNotes()
+    NoteScreen(notes = notesList,
+        onAddNote = {
+            noteViewModel.addNote(it)
+        },
+        onRemoveNote = {
+            noteViewModel.removeNote(it)
+        })
+
+
 }

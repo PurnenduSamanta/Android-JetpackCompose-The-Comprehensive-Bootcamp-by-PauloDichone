@@ -14,9 +14,9 @@
         android:theme="@style/Theme.ComprehensiveBootcampOfCompose"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".noteApp.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.ComprehensiveBootcampOfCompose">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
