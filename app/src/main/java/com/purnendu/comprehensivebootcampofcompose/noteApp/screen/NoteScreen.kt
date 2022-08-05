@@ -18,14 +18,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.purnendu.comprehensivebootcampofcompose.R
 import com.purnendu.comprehensivebootcampofcompose.noteApp.component.NoteButton
 import com.purnendu.comprehensivebootcampofcompose.noteApp.component.NoteInputText
-import com.purnendu.comprehensivebootcampofcompose.noteApp.data.NoteDataSource
 import com.purnendu.comprehensivebootcampofcompose.noteApp.model.Note
-import java.time.format.DateTimeFormatter
+import com.purnendu.comprehensivebootcampofcompose.noteApp.util.formatDate
 
 
 @Composable
@@ -163,21 +161,12 @@ fun NoteRow(
                 style = MaterialTheme.typography.subtitle1
             )
 
-            Text(
-                text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE,d MMM")),
-                style = MaterialTheme.typography.caption
-            )
+            Text(text = formatDate(note.entryDate.time),
+                style = MaterialTheme.typography.caption)
 
         }
 
 
     }
 
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun NotesScreenPreview() {
-    NoteScreen(notes = NoteDataSource().loadNotes(), onAddNote = {}, onRemoveNote = {})
 }
