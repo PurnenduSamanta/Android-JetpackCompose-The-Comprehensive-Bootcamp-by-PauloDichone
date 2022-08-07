@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.purnendu.comprehensivebootcampofcompose">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".noteApp.NoteApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,7 +16,7 @@
         android:theme="@style/Theme.ComprehensiveBootcampOfCompose"
         tools:targetApi="31">
         <activity
-            android:name=".noteApp.MainActivity"
+            android:name=".quizApp.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ComprehensiveBootcampOfCompose">
